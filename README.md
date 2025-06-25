@@ -1,77 +1,77 @@
 # ft_printf
 
-A custom implementation of the printf function from the C standard library, created as part of the 42 Tokyo curriculum.
+C標準ライブラリのprintf関数のカスタム実装。42 Tokyoカリキュラムの一部として作成されました。
 
-## Overview
+## 概要
 
-ft_printf is a library that mimics the behavior of the standard printf function, supporting various format specifiers and providing formatted output to stdout.
+ft_printfは標準のprintf関数の動作を模倣するライブラリで、様々なフォーマット指定子をサポートし、標準出力にフォーマットされた出力を提供します。
 
-## Supported Format Specifiers
+## サポートされているフォーマット指定子
 
-- `%c` - Character
-- `%s` - String
-- `%p` - Pointer address (hexadecimal)
-- `%d` - Signed decimal integer
-- `%i` - Signed decimal integer
-- `%u` - Unsigned decimal integer
-- `%x` - Unsigned hexadecimal integer (lowercase)
-- `%X` - Unsigned hexadecimal integer (uppercase)
-- `%%` - Literal percent sign
+- `%c` - 文字
+- `%s` - 文字列
+- `%p` - ポインタアドレス（16進数）
+- `%d` - 符号付き10進整数
+- `%i` - 符号付き10進整数
+- `%u` - 符号なし10進整数
+- `%x` - 符号なし16進整数（小文字）
+- `%X` - 符号なし16進整数（大文字）
+- `%%` - リテラルパーセント記号
 
-## Project Structure
+## プロジェクト構造
 
 ```
 .
-├── Makefile                    # Build configuration
-├── README.md                   # Project documentation
+├── Makefile                    # ビルド設定
+├── README.md                   # プロジェクトドキュメント
 ├── include/
-│   └── ft_printf.h            # Header file with function declarations
-├── ft_printf.c                # Main printf implementation
-├── ft_put_fd.c                # File descriptor output functions
-├── ft_print_void_hex.c        # Pointer hexadecimal printing
-├── ft_print_num_hex.c         # Number hexadecimal printing
-└── ft_print_us_num_dec.c      # Unsigned decimal printing
+│   └── ft_printf.h            # 関数宣言のヘッダーファイル
+├── ft_printf.c                # メインprintf実装
+├── ft_put_fd.c                # ファイルディスクリプタ出力関数
+├── ft_print_void_hex.c        # ポインタ16進数出力
+├── ft_print_num_hex.c         # 数値16進数出力
+└── ft_print_us_num_dec.c      # 符号なし10進数出力
 ```
 
-## Key Functions
+## 主要関数
 
-### Core Functions
-- `ft_printf()` - Main function that handles format string parsing and output
-- `print_chr()` - Prints a single character
-- `print_str()` - Prints a string with null handling
+### コア関数
+- `ft_printf()` - フォーマット文字列の解析と出力を処理するメイン関数
+- `print_chr()` - 単一文字を出力
+- `print_str()` - null処理付きで文字列を出力
 
-### Numeric Functions
-- `print_num_dec()` - Prints signed decimal integers
-- `print_us_num_dec()` - Prints unsigned decimal integers
-- `print_num_hex()` - Prints integers in hexadecimal format (both upper/lowercase)
-- `print_void_hex()` - Prints pointer addresses in hexadecimal format
+### 数値関数
+- `print_num_dec()` - 符号付き10進整数を出力
+- `print_us_num_dec()` - 符号なし10進整数を出力
+- `print_num_hex()` - 整数を16進数フォーマットで出力（大文字・小文字両対応）
+- `print_void_hex()` - ポインタアドレスを16進数フォーマットで出力
 
-### Utility Functions
-- `ft_putchar_fd()` - Outputs character to file descriptor
-- `ft_putnbr_fd()` - Outputs number to file descriptor
-- `ft_putstr_fd()` - Outputs string to file descriptor
+### ユーティリティ関数
+- `ft_putchar_fd()` - ファイルディスクリプタに文字を出力
+- `ft_putnbr_fd()` - ファイルディスクリプタに数値を出力
+- `ft_putstr_fd()` - ファイルディスクリプタに文字列を出力
 
-## Building
+## ビルド
 
 ```bash
-# Compile the library
+# ライブラリをコンパイル
 make
 
-# Clean object files
+# オブジェクトファイルをクリーン
 make clean
 
-# Clean all generated files
+# 生成されたファイルをすべてクリーン
 make fclean
 
-# Rebuild everything
+# すべてを再ビルド
 make re
 ```
 
-The build process creates `libftprintf.a`, a static library that can be linked with your projects.
+ビルドプロセスにより`libftprintf.a`が作成されます。これは、プロジェクトとリンクできる静的ライブラリです。
 
-## Usage
+## 使用方法
 
-Include the header file and link with the library:
+ヘッダーファイルをインクルードし、ライブラリとリンクします：
 
 ```c
 #include "ft_printf.h"
@@ -83,23 +83,23 @@ int main() {
 }
 ```
 
-Compile with:
+コンパイル：
 ```bash
 gcc your_program.c -L. -lftprintf
 ```
 
-## Implementation Details
+## 実装詳細
 
-- Uses variadic functions (`va_start`, `va_arg`, `va_end`) for handling variable arguments
-- Implements custom number-to-string conversion for decimal and hexadecimal formats
-- Handles edge cases like null pointers and zero values
-- Returns the number of characters printed (like standard printf)
-- Memory-safe with proper error handling
+- 可変引数の処理に可変引数関数（`va_start`、`va_arg`、`va_end`）を使用
+- 10進数と16進数フォーマット用のカスタム数値-文字列変換を実装
+- nullポインタやゼロ値などのエッジケースを処理
+- 標準printfと同様に、出力された文字数を返す
+- 適切なエラーハンドリングによりメモリセーフ
 
-## Author
+## 作者
 
-**kmiyazaw** - 42 Tokyo Student
+**kmiyazaw** - 42 Tokyo学生
 
-## License
+## ライセンス
 
-This project is part of the 42 School curriculum.
+このプロジェクトは42 Schoolカリキュラムの一部です。
